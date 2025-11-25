@@ -16,9 +16,9 @@ Liste des demandes
         {% for demande in demandes %}
         <div class="p-4 bg-base-100 rounded-lg w-full flex justify-between items-center">
             <div class="space-y-2">
-                <h2 class="text-xl font-semibold">{{ demande.titre }}</h2>
-                <p>{{ demande.description }}</p>
-                <p class="text-sm">Priorité: {{ demande.priorite }} | Statut: {{ demande.statut }} | Utilisateur: {{ demande.utilisateur.nom }} | Domaine: {{ demande.domaine.nom }}</p>
+                <h2 class="text-xl font-semibold">{{ demande.domaine }}</h2>
+                <p>{{ demande.intitule }}</p>
+                <p class="text-sm">Description: {{ demande.description }} | Statut: {{ demande.statut }}</p>
             </div>
             <div class="space-y">
                 <a href="{%url 'update_demande' demande.id %}" class="btn btn-success">

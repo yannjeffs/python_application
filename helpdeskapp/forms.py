@@ -73,7 +73,7 @@ class DemandeForm(forms.ModelForm):
                 'class': 'textarea w-full h-24',
                 'placeholder': 'Décrire en quelques mots la demande'
             }),
-            'statut' : forms.Select(attrs={
+            'statuts' : forms.Select(attrs={
                 'class': 'select w-full',
             })
         }

@@ -17,15 +17,15 @@ class Utilisateur(models.Model):
     password = models.CharField(max_length=100)
     role = models.CharField(max_length=20, choices=roles, default='client')
 
-    def __dir__(self):
+    def __str__(self):
         return f"{self.nom} {self.prenom} {(self.role)}"
     
 class Domaine(models.Model):
     intitule = models.CharField(max_length=100)
     description = models.CharField(max_length=100)
 
-    def __dir__(self):
-        return f"{self.intitule} {self.description}"
+    def __str__(self):
+        return f"{self.intitule}"
     
 class Demande(models.Model):
     statut = [
@@ -37,7 +37,7 @@ class Demande(models.Model):
     client = models.ForeignKey(
         Utilisateur,
         on_delete=models.CASCADE,
-        related_name = 'demandes_client',
+        related_name = 'client_demandes',
         limit_choices_to={'role': 'client'}
     )
 
@@ -61,5 +61,5 @@ class Demande(models.Model):
     statuts = models.CharField(max_length=20, choices=statut, default='en attente')
     date_demande = models.DateTimeField(auto_now_add=True)
 
-    def __dir__(self):
+    def __str__(self):
         return f"{self.intitule} {self.description} ({self.statut})"
