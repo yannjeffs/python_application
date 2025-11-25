@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{% if utilisateur %}
+    Modifier un utilisateur
+{% else %}
+    Ajouter un utilisateur
+{% endif %}
+{% endblock %}
+{% block content %}
+
+<div class="mb-4 flex justify-between icons-center">
+    <h1 class="text-2xl font-bold">
+        {% if utilisateur %}
+            Modifier un utilisateur
+        {% else %}
+            Ajouter un utilisateur
+        {% endif %}
+    </h1>
+    <a href="{%url 'liste_utilisateurs' %}" class="btn btn-primary">
+        <i class="fa fa-cogs"></i>
+        Liste des utilisateurs
+    </a>
+</div>
+
+<form method="post" class="space-y-4">
+    {% csrf_token %}
+    {{ form.nom }}
+    {{ form.prenom }}
+    {{ form.telephone }}
+    {{ form.address }}
+    {{ form.email }}
+    {{ form.password}}
+    {{ form.role }}
+
+    <div class="flex justify-end">
+        <button type="submit" class="btn btn-primary">
+            {% if utilisateur %}
+                Mettre à jour
+            {% else %}
+                Enregistrer
+            {% endif%}
+        </button>
+    </div>
+</form>
+{% endblock %}

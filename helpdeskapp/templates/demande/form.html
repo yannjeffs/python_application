@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{% if demande %}
+    Modifier une demande
+{% else %}
+    Ajouter une demande
+{% endif %}
+{% endblock %}
+{% block content %}
+
+<div class="mb-4 flex justify-between icons-center">
+    <h1 class="text-2xl font-bold">
+        {% if demande %}
+            Modifier une demande
+        {% else %}
+            Ajouter une demande
+        {% endif %}
+    </h1>
+    <a href="{%url 'liste_demandes' %}" class="btn btn-primary">
+        <i class="fa fa-cogs"></i>
+        Liste des demandes
+    </a>
+</div>
+
+<form method="post" class="space-y-4">
+    {% csrf_token %}
+    {{ form.titre }}
+    {{ form.description }}
+    {{ form.priorite }}
+    {{ form.statut }}
+    {{ form.utilisateur }}
+    {{ form.domaine }}
+
+    <div class="flex justify-end">
+        <button type="submit" class="btn btn-primary">
+            {% if demande %}
+                Mettre à jour
+            {% else %}
+                Enregistrer
+            {% endif%}
+        </button>
+    </div>
+</form>
+{% endblock %}
