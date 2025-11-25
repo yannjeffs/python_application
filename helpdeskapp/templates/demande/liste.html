@@ -21,10 +21,10 @@ Liste des demandes
                 <p class="text-sm">Priorité: {{ demande.priorite }} | Statut: {{ demande.statut }} | Utilisateur: {{ demande.utilisateur.nom }} | Domaine: {{ demande.domaine.nom }}</p>
             </div>
             <div class="space-y">
-                <a href="{%url 'update_utilisateur' utilisateur.id %}" class="btn btn-success">
+                <a href="{%url 'update_demande' demande.id %}" class="btn btn-success">
                     <i class="fa fa-pencil"></i>
                 </a>
-                <a href="{%url 'delete_utilisateur' utilisateur.id %}" class="btn btn-error">
+                <a href="{%url 'delete_demande' demande.id %}" class="btn btn-error">
                     <i class="fa fa-trash"></i>
                 </a>
             </div>
