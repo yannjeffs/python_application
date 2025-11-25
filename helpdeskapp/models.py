@@ -18,7 +18,7 @@ class Utilisateur(models.Model):
     role = models.CharField(max_length=20, choices=roles, default='client')
 
     def __str__(self):
-        return f"{self.nom} {self.prenom} {(self.role)}"
+        return f"{self.nom} {self.prenom} {self.email} {(self.role)}"
     
 class Domaine(models.Model):
     intitule = models.CharField(max_length=100)
@@ -62,4 +62,4 @@ class Demande(models.Model):
     date_demande = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.intitule} {self.description} ({self.statut})"
+        return f"{self.intitule} {(self.statuts)}"

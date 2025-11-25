@@ -34,7 +34,7 @@ class UtilisateurForm(forms.ModelForm):
                 'placeholder': 'Entrer le numéro de téléphone'
             }),
             'address' : forms.Textarea(attrs={
-                'class': 'textarea w-full h-24',
+                'class': 'textarea w-full h-16',
                 'placeholder': 'Entrer l\'adresse'
             }),
             'email' : forms.EmailInput(attrs={

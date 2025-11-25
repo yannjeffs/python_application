@@ -18,7 +18,7 @@ Liste des demandes
             <div class="space-y-2">
                 <h2 class="text-xl font-semibold">{{ demande.domaine }}</h2>
                 <p>{{ demande.intitule }}</p>
-                <p class="text-sm">Description: {{ demande.description }} | Statut: {{ demande.statut }}</p>
+                <p class="text-sm">Description: {{ demande.description }} | Statut: {{ demande.statuts }}</p>
             </div>
             <div class="space-y">
                 <a href="{%url 'update_demande' demande.id %}" class="btn btn-success">
