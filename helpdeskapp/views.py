@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth import authenticate, login, logout
 from .models import *
 from django.contrib import messages
 from .forms import *
@@ -59,7 +60,7 @@ def add_utilisateur(request):
     
 def update_utilisateur(request, id):
     utilisateur = get_object_or_404(Utilisateur, id=id)
-    form = UtilisateurForm(request.POST, instance=utilisateur)
+    form = UtilisateurForm(request.POST or None, instance=utilisateur)
     if request.method == 'POST':
         if form.is_valid():
             form.save()
@@ -115,3 +116,34 @@ def delete_demande(request, id):
     else:
         messages.error(request, 'Erreur lors de la suppression de la demande')
     return redirect('liste_demandes')
+
+def utilisateur_login(request):
+    form = LoginForm(request.POST or None)
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        utilisateur = authenticate(request, email=email, password=password)
+
+        if utilisateur is not None:
+            login(request, utilisateur)
+            messages.success(request, 'Connexion réussie')
+            return redirect('dashboard')
+        else:
+            messages.error(request, 'Email ou mot de passe incorrect')
+    return render(request, 'accounts/login.html', {'form': form})
+
+def utilisateur_logout(request):
+    logout(request)
+    messages.success(request, 'Déconnexion réussie')
+    return redirect('utilisateur_login')
+
+def utilisateur_register(request):
+    form = RegisterForm(request.POST or None)
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Inscription réussie. Vous pouvez maintenant vous connectrer')
+            return redirect('utilisateur_login')
+        else:
+            messages.error(request, 'Erreur lors de l\'inscription')
+    return render(request, 'accounts/register.html', {'form': form})

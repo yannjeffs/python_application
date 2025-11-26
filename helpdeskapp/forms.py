@@ -77,3 +77,49 @@ class DemandeForm(forms.ModelForm):
                 'class': 'select w-full',
             })
         }
+
+class LoginForm(forms.ModelForm):
+    class Meta:
+        model = Utilisateur
+        fields = ['email', 'password']
+        widgets = {
+            'email' : forms.EmailInput(attrs={
+                'class': 'input w-full',
+                'placeholder': 'Entrer votre adresse email'
+            }),
+            'password' : forms.PasswordInput(attrs={
+                'class': 'input w-full',
+                'placeholder': 'Entrer votre mot de passe'
+            }),
+        }
+
+class RegisterForm(forms.ModelForm):
+    class Meta:
+        model = Utilisateur
+        fields = ['nom', 'prenom', 'telephone', 'address', 'email', 'password']
+        widgets = {
+            'nom' : forms.TextInput(attrs={
+                'class': 'input w-full',
+                'placeholder': 'Entrer le nom'
+            }),
+            'prenom' : forms.TextInput(attrs={
+                'class': 'input w-full',
+                'placeholder': 'Entrer le prénom'
+            }),
+            'telephone' : forms.TextInput(attrs={
+                'class': 'input w-full',
+                'placeholder': 'Entrer le numéro de téléphone'
+            }),
+            'address' : forms.Textarea(attrs={
+                'class': 'textarea w-full h-16',
+                'placeholder': 'Entrer l\'adresse'
+            }),
+            'email' : forms.EmailInput(attrs={
+                'class': 'input w-full',
+                'placeholder': 'Entrer l\'email'
+            }),
+            'password' : forms.PasswordInput(attrs={
+                'class': 'input w-full',
+                'placeholder': 'Entrer le mot de passe'
+            }),
+        }

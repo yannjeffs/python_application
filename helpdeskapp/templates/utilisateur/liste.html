@@ -16,11 +16,10 @@ Liste des utilisateurs
         {% for utilisateur in utilisateurs %}
         <div class="p-4 bg-base-100 rounded-lg w-full flex justify-between items-center">
             <div class="space-y-2">
-                <p class="font-bold text-lg">{{ utilisateur.nom }}</p>
+                <p class="font-bold text-lg">{{ utilisateur.nom }}  <span class="btn btn-info btn-sm">{{ utilisateur.role}}</span></p>
                 <p class="text-sm">{{ utilisateur.prenom }}</p>
                 <p class="text-sm">{{ utilisateur.address }}</p>
                 <p class="text-sm">{{ utilisateur.email }}</p>
-                <p class="btn btn-info btn-sm">{{ utilisateur.role}}</p>
             </div>
             <div class="space-y">
                 <a href="{%url 'update_utilisateur' utilisateur.id %}" class="btn btn-success">

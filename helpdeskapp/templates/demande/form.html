@@ -7,6 +7,7 @@
     Ajouter une demande
 {% endif %}
 {% endblock %}
+
 {% block content %}
 
 <div class="mb-4 flex justify-between icons-center">
@@ -25,6 +26,8 @@
 
 <form method="post" class="space-y-4">
     {% csrf_token %}
+    {{ form.client }}
+    {{ form.technicien }}
     {{ form.domaine }}
     {{ form.intitule }}
     {{ form.description }}

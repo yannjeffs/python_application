@@ -16,6 +16,8 @@ Liste des demandes
         {% for demande in demandes %}
         <div class="p-4 bg-base-100 rounded-lg w-full flex justify-between items-center">
             <div class="space-y-2">
+                <h2 class="text-xl font-semibold">{{ demande.client }}</h2>
+                <h2 class="text-xl font-semibold">{{ demande.technicien }}</h2>
                 <h2 class="text-xl font-semibold">{{ demande.domaine }}</h2>
                 <p>{{ demande.intitule }}</p>
                 <p class="text-sm">Description: {{ demande.description }} | Statut: {{ demande.statuts }}</p>

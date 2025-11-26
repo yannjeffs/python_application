@@ -18,7 +18,7 @@ class Utilisateur(models.Model):
     role = models.CharField(max_length=20, choices=roles, default='client')
 
     def __str__(self):
-        return f"{self.nom} {self.prenom} {self.email} {(self.role)}"
+        return f"{self.nom} {self.prenom} {(self.role)}"
     
 class Domaine(models.Model):
     intitule = models.CharField(max_length=100)

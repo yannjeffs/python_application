@@ -16,5 +16,9 @@ urlpatterns = [
     path('demande/', liste_demandes, name='liste_demandes'),
     path('demande/add/', add_demande, name='add_demande'),
     path('demande/update/<int:id>/', update_demande, name='update_demande'),
-    path('demande/delete/<int:id>/', delete_demande, name='delete_demande')
+    path('demande/delete/<int:id>/', delete_demande, name='delete_demande'),
+
+    path('login/', utilisateur_login, name='utilisateur_login'),
+    path('register/', utilisateur_register, name='utilisateur_register'),
+    path('logout/', utilisateur_logout, name='utilisateur_logout')
 ]

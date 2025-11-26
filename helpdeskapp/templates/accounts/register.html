@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}
+    Inscription | HelpDesk
+{% endblock %}
+
+{% block content %}
+
+<div class="">
+    <div class="mb-4 flex justify-between intems-center">
+        <h1 class="text-2xl font-bold">
+            Inscription | HelpDesk
+            {{ utilisateur }}
+        </h1>
+    </div>
+
+    <form method="post" class="space-y-4">
+        {%csrf_token %}
+        {{ form.nom }}
+        {{ form.prenom }}
+        {{ form.telephone }}
+        {{ form.address }}
+        {{ form.email }}
+        {{ form.password }} 
+
+        <div class="flex justify-end space-x-2">
+            <button type="submit" class="btn btn-success">S'inscrire</button>
+        </div>
+        <div class="flex justify-center space-y">
+            <p>
+                <span>Vous avez déjà un compte ?</span>
+                <a href="{%url 'utilisateur_login' %}">Connectez-vous</a>
+            </p>
+        </div>
+    </form>
+</div>
+{% endblock %}
