@@ -118,32 +118,40 @@ def delete_demande(request, id):
     return redirect('liste_demandes')
 
 def utilisateur_login(request):
-    form = LoginForm(request.POST or None)
     if request.method == 'POST':
         email = request.POST.get('email')
         password = request.POST.get('password')
-        utilisateur = authenticate(request, email=email, password=password)
 
-        if utilisateur is not None:
-            login(request, utilisateur)
+        # utilisateur = authenticate(request, email=email, password=password)
+        user = Utilisateur.objects.filter(email=email, password=password).first()
+
+        if user is not None:
+            # login(request, utilisateur)
+            request.session['profil'] = user.role
             messages.success(request, 'Connexion réussie')
-            return redirect('dashboard')
+            return redirect('liste_utilisateurs')
         else:
             messages.error(request, 'Email ou mot de passe incorrect')
+    try:
+        form = LoginForm()
+    except NameError:
+        form = None
+    
     return render(request, 'accounts/login.html', {'form': form})
-
-def utilisateur_logout(request):
-    logout(request)
-    messages.success(request, 'Déconnexion réussie')
-    return redirect('utilisateur_login')
 
 def utilisateur_register(request):
     form = RegisterForm(request.POST or None)
     if request.method == 'POST':
         if form.is_valid():
             form.save()
-            messages.success(request, 'Inscription réussie. Vous pouvez maintenant vous connectrer')
+            messages.success(request, 'Inscription réussie. Vous pouvez maintenant vous connecter')
             return redirect('utilisateur_login')
         else:
             messages.error(request, 'Erreur lors de l\'inscription')
     return render(request, 'accounts/register.html', {'form': form})
+
+def utilisateur_logout(request):
+    logout(request)
+    messages.success(request, 'Déconnexion réussie')
+    return redirect('utilisateur_login')
+
